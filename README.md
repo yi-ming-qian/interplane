@@ -9,6 +9,7 @@ We use Python 3.7 and PyTorch 1.0.0 in our implementation, please install depend
 ```bash
 conda create -n interplane python=3.7
 conda activate interplane
+conda install pytorch==1.0.0 torchvision==0.2.1 cuda90 -c pytorch
 conda install -c menpo opencv
 pip install -r requirements.txt
 ```
@@ -39,7 +40,7 @@ Evaluate when input method is PlaneAE:
 ```bash
 python predict_all.py eval with dataset.dataFolder=$ROOT_FOLDER/ resume_angle=/path/to/orientationCNN/model  resume_contact=/path/to/contactCNN/model resume_seg=/path/to/segmentationMPN/model input_method=planeae
 ```
-We also provide our trained models here.
+We also provide our pre-trained models here.
 
 ## Contact
 [https://yi-ming-qian.github.io/](https://yi-ming-qian.github.io/)

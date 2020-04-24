@@ -18,7 +18,6 @@ import cv2
 from PIL import Image
 import pickle
 import imageio
-from skimage.morphology import medial_axis, skeletonize
 
 from datasets.scannet_scene import ScanNetScene
 
