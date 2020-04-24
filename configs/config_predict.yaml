@@ -1,0 +1,30 @@
+seed: 123
+num_gpus: 1
+num_epochs: 9000
+resume_angle: None
+resume_contact: None
+resume_seg: None
+resume_coplane: None
+print_interval: 10
+input_method: planercnn
+
+solver:
+  method: adam
+  lr: 0.0001
+  weight_decay: 0
+
+dataset:
+  dataFolder: /local-scratch/yimingq/planercnn/Data/ScanNet
+  batch_size: 24
+  num_workers: 8
+  planeAreaThreshold: 500
+  planeWidthThreshold: 10
+  IMAGE_MAX_DIM: 640
+  IMAGE_MIN_DIM: 480
+  IMAGE_PADDING: True
+
+
+model:
+  arch: resnet50
+  pretrained: True
+  input_channel: 8
