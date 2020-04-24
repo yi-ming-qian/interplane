@@ -40,7 +40,7 @@ Evaluate when input method is PlaneAE:
 ```bash
 python predict_all.py eval with dataset.dataFolder=$ROOT_FOLDER/ resume_angle=/path/to/orientationCNN/model  resume_contact=/path/to/contactCNN/model resume_seg=/path/to/segmentationMPN/model input_method=planeae
 ```
-We also provide our pre-trained models here.
+The results will be saved under "experiments/predict/{RUN_ID}/results/". We also provide our pre-trained models here.
 
 ## Contact
 [https://yi-ming-qian.github.io/](https://yi-ming-qian.github.io/)
