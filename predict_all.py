@@ -21,7 +21,7 @@ from torch.utils import data
 import torch.nn.functional as F
 import torchvision.transforms as tf
 
-from utils.misc import AverageMeter, get_optimizer, VisdomLinePlotter
+from utils.misc import AverageMeter, get_optimizer
 from utils.metric import evaluatePlanesTensor, eval_plane_param, eval_plane_param1, eval_planepair_diff
 from utils.metric import eval_relation_baseline, comp_conrel_iou
 from utils.minimize import plane_minimize, validate_gradients, get_magnitude, weighted_line_fitting_2d
@@ -879,8 +879,8 @@ def duplicate_face(faces_ori):
     return np.concatenate([faces, faces_ori])
 
 if __name__ == '__main__':
-    assert LooseVersion(torch.__version__) >= LooseVersion('0.4.0'), \
-        'PyTorch>=0.4.0 is required'
+    assert LooseVersion(torch.__version__) >= LooseVersion('1.0.0'), \
+        'PyTorch 1.0.0 is used'
 
     ex.add_config('./configs/config_predict.yaml')
     ex.run_commandline()

@@ -17,7 +17,7 @@ from torch.utils import data
 import torch.nn.functional as F
 import torchvision.transforms as tf
 
-from utils.misc import AverageMeter, get_optimizer, VisdomLinePlotter
+from utils.misc import AverageMeter, get_optimizer
 from utils.metric import eval_iou
 from utils.disp import colors_256 as colorplate
 from datasets.utils import calc_points_by_param_map, writePointCloud
@@ -135,7 +135,6 @@ def train(_run, _log):
                 _log.info(f"[{epoch:2d}][{iter:5d}/{len(train_loader):5d}] "
                       f"Time: {batch_time.val:.2f} ({batch_time.avg:.2f}) "
                       f"Loss: {losses.val:.4f} ({losses.avg:.4f}) ")
-        plotter.plot('train loss', 'train', 'train Loss', epoch, losses.avg)
 
         # evaluate on test set (i know this is not fine)
         validating(val_loader, network, _log, device, epoch, _run._id)
@@ -201,10 +200,6 @@ def validating(data_loader, network, log, device, epoch, runid):
             cv2.imwrite(os.path.join(validate_dir, f"img_{iter}.png"), np.concatenate([image3, image1, image2, image4],1))
         log.info(f"validating done, IOU: {ioues.avg:.1f}")
 
-        # plotter.plot('classify val loss','val', 'classify val loss', epoch, losses.avg)
-        # plotter.plot('val acc', 'val', 'val accuracy', epoch, top1.avg)
-        plotter.plot('val iou', 'val', 'val iou', epoch, ioues.avg)
-        # plotter.plot('val mse', 'val', 'val mse', epoch, line_mses.avg)
     return 0 # consider to return val...
 
 @ex.command
@@ -324,10 +319,8 @@ def blend_img(image, mask1, mask2, line):
     return np.concatenate([i1,i2,i3,i4],1)  
       
 if __name__ == '__main__':
-    assert LooseVersion(torch.__version__) >= LooseVersion('0.4.0'), \
-        'PyTorch>=0.4.0 is required'
-    global plotter
-    plotter = VisdomLinePlotter(env_name='main') # 1 means has if condition
+    assert LooseVersion(torch.__version__) >= LooseVersion('1.0.0'), \
+        'PyTorch 1.0.0 is used'
 
     ex.add_config('./configs/config_segmentation.yaml')
     ex.run_commandline()

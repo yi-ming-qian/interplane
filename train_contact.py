@@ -17,7 +17,7 @@ from torch.utils import data
 import torch.nn.functional as F
 import torchvision.transforms as tf
 
-from utils.misc import AverageMeter, get_optimizer, VisdomLinePlotter
+from utils.misc import AverageMeter, get_optimizer
 from utils.metric import comp_iou
 #from utils.loss import class_balanced_cross_entropy_loss
 ex = Experiment()
@@ -181,10 +181,6 @@ def validating(data_loader, network, criterion, log, device, epoch, runid):
 
         log.info(f"Loss: {losses.avg:.4f}, Top1: {top1.avg:.4f}, IOU: {ioues.avg:.1f}, MSE: {line_mses.avg:.4f}")
 
-        plotter.plot('classify val loss','val', 'classify val loss', epoch, losses.avg)
-        plotter.plot('val acc', 'val', 'val accuracy', epoch, top1.avg)
-        plotter.plot('val iou', 'val', 'val iou', epoch, ioues.avg)
-        plotter.plot('val mse', 'val', 'val mse', epoch, line_mses.avg)
     return top1.avg # consider to return val...
 
 def accuracy(output, target, topk=(1,)):
@@ -205,10 +201,8 @@ def accuracy(output, target, topk=(1,)):
 
         
 if __name__ == '__main__':
-    assert LooseVersion(torch.__version__) >= LooseVersion('0.4.0'), \
-        'PyTorch>=0.4.0 is required'
-    global plotter
-    plotter = VisdomLinePlotter(env_name='all_bce_depth2') # 1 means has if condition
+    assert LooseVersion(torch.__version__) >= LooseVersion('1.0.0'), \
+        'PyTorch 1.0.0 is used'
 
     ex.add_config('./configs/config_contact.yaml')
     ex.run_commandline()

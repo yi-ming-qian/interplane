@@ -5,7 +5,7 @@ Clone the repository:
 git clone https://github.com/yi-ming-qian/interplane.git
 ```
 
-We use python 3.7 and pytorch in our implementation, please install dependencies:
+We use Python 3.7 and PyTorch 1.0.0 in our implementation, please install dependencies:
 ```bash
 conda create -n interplane python=3.7
 conda activate interplane
@@ -16,7 +16,7 @@ pip install -r requirements.txt
 ## Dataset
 We create our pairwise plane relationship dataset based on [PlaneRCNN](https://github.com/NVlabs/planercnn). Please follow the [instructions](https://github.com/NVlabs/planercnn#training-data-preparation) in their repo to download their dataset.
 
-Then dowload our relationship dataset from here, and do the following: (1) merge the "scans/" folder with "$ROOT_FOLDER/scans/", (2) place "contact_split/" under "$ROOT_FOLDER/".
+Then dowload our relationship dataset from here, and do the following: (1) merge the "scans/" folder with "$ROOT_FOLDER/scans/", (2) place "contact_split/" under "$ROOT_FOLDER/", (3) place "planeae_result" under "$ROOT_FOLDER/".
 
 ## Training
 We have three networks, Orientation-CNN, Contact-CNN, Segmentation-MPN, which are trained separately:

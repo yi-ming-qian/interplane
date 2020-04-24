@@ -1,7 +1,4 @@
-torch==0.4.1
-torchvision==0.2.0
-tensorflow==1.14.0
-imageio
+torch==1.0.0
 scipy
 argparse
 Pillow
@@ -9,3 +6,6 @@ sacred
 easydict
 pymongo
 pyyaml
+matplotlib
+pyrender
+triangle

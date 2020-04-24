@@ -17,7 +17,7 @@ from torch.utils import data
 import torch.nn.functional as F
 import torchvision.transforms as tf
 
-from utils.misc import AverageMeter, get_optimizer, VisdomLinePlotter
+from utils.misc import AverageMeter, get_optimizer
 ex = Experiment()
 ex.observers.append(FileStorageObserver.create('experiments/angle'))
 
@@ -95,7 +95,6 @@ def train(_run, _log):
                       f"Time: {batch_time.val:.2f} ({batch_time.avg:.2f}) "
                       f"Loss: {losses.val:.4f} ({losses.avg:.4f}) "
                       f"Top1: {top1.val:.3f} ({top1.avg:.3f}) ")
-        plotter.plot('train loss', 'train', 'train Loss', epoch, losses.avg)
 
         # evaluate on test set (i know this is not fine)
         acc1 = validating(val_loader, network, criterion, _log, device, epoch)
@@ -123,8 +122,6 @@ def validating(data_loader, network, criterion, log, device, epoch):
             top1.update(acc1[0].item(), image.size(0))
         log.info(f"Loss: {losses.avg:.4f}, Top1: {top1.avg:.4f}")
 
-        plotter.plot('val loss','val', 'val loss', epoch, losses.avg)
-        plotter.plot('val acc', 'val', 'val accuracy', epoch, top1.avg)
     return top1.avg
 
 def accuracy(output, target, topk=(1,)):
@@ -144,10 +141,8 @@ def accuracy(output, target, topk=(1,)):
         return res
 
 if __name__ == '__main__':
-    assert LooseVersion(torch.__version__) >= LooseVersion('0.4.0'), \
-        'PyTorch>=0.4.0 is required'
-    global plotter
-    plotter = VisdomLinePlotter(env_name='angle_large_V1')
+    assert LooseVersion(torch.__version__) >= LooseVersion('1.0.0'), \
+        'PyTorch 1.0.0 is used'
 
     ex.add_config('./configs/config_angle.yaml')
     ex.run_commandline()
