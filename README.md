@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ## Dataset
 We create our pairwise plane relationship dataset based on [PlaneRCNN](https://github.com/NVlabs/planercnn). Please follow the [instructions](https://github.com/NVlabs/planercnn#training-data-preparation) in their repo to download their dataset.
 
-Then dowload our relationship dataset from here, and do the following: (1) merge the "scans/" folder with "$ROOT_FOLDER/scans/", (2) place "contact_split/" under "$ROOT_FOLDER/", (3) place "planeae_result" under "$ROOT_FOLDER/".
+Then dowload our relationship dataset from [here](https://www.dropbox.com/s/lwzm5rvnbjrdm0y/relation_data.zip?dl=0), and do the following: (1) merge the "scans/" folder with "$ROOT_FOLDER/scans/", (2) place "contact_split/" under "$ROOT_FOLDER/", (3) place "planeae_result" under "$ROOT_FOLDER/".
 
 ## Training
 We have three networks, Orientation-CNN, Contact-CNN, Segmentation-MPN, which are trained separately:
@@ -40,7 +40,7 @@ Evaluate when input method is PlaneAE:
 ```bash
 python predict_all.py eval with dataset.dataFolder=$ROOT_FOLDER/ resume_angle=/path/to/orientationCNN/model  resume_contact=/path/to/contactCNN/model resume_seg=/path/to/segmentationMPN/model input_method=planeae
 ```
-The results will be saved under "experiments/predict/{RUN_ID}/results/". We also provide our pre-trained models here.
+Two gpus are used for inference. The results will be saved under "experiments/predict/{RUN_ID}/results/". We also provide our pre-trained models [here](https://www.dropbox.com/s/bd4ucqjrou3d0kx/checkpoints.zip?dl=0).
 
 ## Contact
 [https://yi-ming-qian.github.io/](https://yi-ming-qian.github.io/)
