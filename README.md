@@ -1,3 +1,7 @@
+# Learning Pairwise Inter-Plane Relations for Piecewise Planar Reconstruction
+
+Code for our ECCV 2020 paper by [Yiming Qian](https://yi-ming-qian.github.io/) and [Yasutaka Furukawa](https://www.cs.sfu.ca/~furukawa/)
+
 ## Getting Started
 
 Clone the repository:
