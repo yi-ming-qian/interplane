@@ -96,7 +96,6 @@ def train(_run, _log):
                       f"Loss: {losses.val:.4f} ({losses.avg:.4f}) "
                       f"Top1: {top1.val:.3f} ({top1.avg:.3f}) ")
 
-        # evaluate on test set (i know this is not fine)
         acc1 = validating(val_loader, network, criterion, _log, device, epoch)
         best_acc1 = max(best_acc1, acc1)
         _log.info(f"epoch: {epoch}, best accuracy: {best_acc1}")
