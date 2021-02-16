@@ -136,7 +136,6 @@ def train(_run, _log):
                       f"Time: {batch_time.val:.2f} ({batch_time.avg:.2f}) "
                       f"Loss: {losses.val:.4f} ({losses.avg:.4f}) ")
 
-        # evaluate on test set (i know this is not fine)
         validating(val_loader, network, _log, device, epoch, _run._id)
         _log.info(f"epoch: {epoch} is done")
         if epoch % 5 == 0:
