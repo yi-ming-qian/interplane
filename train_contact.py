@@ -121,7 +121,6 @@ def train(_run, _log):
                       f"Top1: {top1.val:.3f} ({top1.avg:.3f}) ")
         plotter.plot('train loss', 'train', 'train Loss', epoch, losses.avg)
 
-        # evaluate on test set (i know this is not fine)
         acc1= validating(val_loader, network, ce_loss, _log, device, epoch, _run._id)
         best_acc1 = max(best_acc1, acc1)
         _log.info(f"epoch: {epoch}, best accuracy: {best_acc1}")
