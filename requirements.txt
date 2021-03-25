@@ -5,7 +5,7 @@ Pillow==6.2.0
 sacred==0.8.0
 easydict==1.9
 pymongo==3.9.0
-pyyaml==5.1.2
+pyyaml==5.4
 matplotlib==3.1.2
 pyrender==0.1.32 
 triangle
